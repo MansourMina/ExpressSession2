@@ -48,9 +48,9 @@ export default {
       method: 'GET',
     });
     this.prime = data;
-    let IdName = JSON.parse(localStorage.getItem('IdName'));
-    this.user.id = IdName.id;
-    this.user.name = IdName.name;
+    let user = JSON.parse(localStorage.getItem('user'));
+    this.user.id = user.id;
+    this.user.name = user.name;
   },
 };
 </script>

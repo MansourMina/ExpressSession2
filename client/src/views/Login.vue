@@ -22,7 +22,7 @@
           />
         </div>
         <div class="col-2">
-          <button class="btn btn-primary" @click="login()">Login</button>
+          <router-link to="/"><button class="btn btn-primary" @click="login()">Login</button></router-link>
         </div>
       </div>
     </form>
@@ -49,13 +49,14 @@ export default {
       let { data } = await axios({
         url: 'http://127.0.0.1:3000/login',
         method: 'POST',
+        contentType: 'application/json',
         data: {
           email: this.email,
           password: this.password,
         },
       });
-      localStorage.setItem('IdName', JSON.stringify(data));
-      this.$router.push('/');
+      localStorage.setItem('user', JSON.stringify(data));
+      this.$router.push({name: 'Home'});
     },
   },
 };

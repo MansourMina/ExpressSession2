@@ -5,9 +5,10 @@ const routes = require('./routes');
 const cors = require('cors');
 const session = require('express-session');
 const errorHandler = require('./middleware/errorHandler');
+const history = require('connect-history-api-fallback');
 
 require('dotenv').config({ path: __dirname + '/.env' });
-const {
+let {
   PORT,
   NODE_ENV,
   SESSION_LIFETIME,
@@ -18,6 +19,8 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(history());
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(express.json());

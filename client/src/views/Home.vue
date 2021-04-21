@@ -13,7 +13,6 @@
           <img class="img-fluid" src="/images/ceo.jpg" />
         </div>
         <div class="col-8 d-flex flex-column justify-content-center">
-          
           <h3>A word from our CEO</h3>
           <h4>Dear Customer</h4>
           <p class="text-justify">
@@ -37,7 +36,7 @@
       <h5 class="text-center mb-4">You are logged in!</h5>
       <div class="mx-auto">
         <router-link to="/account">Account</router-link> |
-        <router-link to="/logout" >Logout</router-link>
+        <router-link to="/logout">Logout</router-link>
       </div>
       <h5 class="text-center mt-5 text-danger">
         Your account is about to expire. Update your credit card information!
@@ -61,9 +60,11 @@ export default {
     };
   },
   created() {
-    let IdName= JSON.parse(localStorage.getItem('IdName'));
-    this.user.id= IdName.id
-    this.user.name= IdName.name
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user != null) {
+      this.user.id = user.id;
+      this.user.name = user.name;
+    }
   },
 };
 </script>

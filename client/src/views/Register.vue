@@ -66,7 +66,7 @@ export default {
           password: this.password,
         },
       });
-      localStorage.setItem('IdName', JSON.stringify(data));
+      localStorage.setItem('user', JSON.stringify(data));
       this.$router.push('/');
     },
   },

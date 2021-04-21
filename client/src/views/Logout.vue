@@ -16,13 +16,19 @@
 <script>
 import axios from 'axios';
 export default {
-  async created() {
+  created () {
+    this.LogOut()
     localStorage.clear();
+  },
 
-    await axios({
+
+  methods: {
+    async LogOut() {
+      await axios({
       url: 'http://127.0.0.1:3000/logout',
       method: 'GET',
     });
+    }
   },
 };
 </script>

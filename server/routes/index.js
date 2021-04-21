@@ -1,7 +1,7 @@
 const express = require('express');
 const users = require('../model/users');
 const router = express.Router();
-// enter your code here
+
 const redirectLogin = (req, res, next) => {
   if (!req.session.userId) res.status(400).send('You are not logged in!');
   else next();
@@ -11,7 +11,7 @@ router.post('/login', (req, res) => {
   let password = req.body.password;
   if (email && password) {
     const user = users.find(
-      (el) => el.email == email && el.password == password,
+      (el) => el.email === email && el.password === password,
     );
     if (user) {
       req.session.userId = user.id;
@@ -23,6 +23,7 @@ router.post('/login', (req, res) => {
 router.get('/logout', redirectLogin, (req, res) => {
   req.session.destroy();
   res.clearCookie(process.env.SESSION_NAME);
+  res.status(200).send('erfolgreich ausgeloggt')
 });
 
 router.post('/register', (req, res) => {
@@ -33,10 +34,10 @@ router.post('/register', (req, res) => {
     const user = users.find((el) => el.email == email);
 
     if (user) {
-      res.status(401).send('E-Mail already registered');
+      res.status(409).send('E-Mail already registered');
     } else {
       let maxId =
-        users.reduce((acc, cur) => (acc = acc > cur.id ? acc : cur.id), 0) + 1;
+        users.reduce((acc, curr) => (acc = acc > curr.id ? acc : curr.id), 0) + 1;
       users.push({
         id: maxId,
         name: name,
@@ -49,10 +50,8 @@ router.post('/register', (req, res) => {
   } else res.status(400).send('Registration failed');
 });
 
-router.get('/secretdata',redirectLogin, (req, res) => {
-  res.status(200).send('the prime number is 2305843009213693951');
+router.get('/secretdata', redirectLogin, (req, res) => {
+  res.status(200).end('the prime number is 2305843009213693951');
 });
-
-
 
 module.exports = router;
