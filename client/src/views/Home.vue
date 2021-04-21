@@ -13,6 +13,7 @@
           <img class="img-fluid" src="/images/ceo.jpg" />
         </div>
         <div class="col-8 d-flex flex-column justify-content-center">
+          
           <h3>A word from our CEO</h3>
           <h4>Dear Customer</h4>
           <p class="text-justify">
@@ -61,8 +62,8 @@ export default {
   },
   created() {
     let IdName= JSON.parse(localStorage.getItem('IdName'));
-    this.id= IdName.id
-    this.name= IdName.name
+    this.user.id= IdName.id
+    this.user.name= IdName.name
   },
 };
 </script>

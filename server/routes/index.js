@@ -1,12 +1,14 @@
 const express = require('express');
-
+const users = require('../model/users');
 const router = express.Router();
 // enter your code here
 
 router.post('/login', (req, res) => {
-  if (req.body.email && req.body.password) {
+  let email = req.body.email;
+  let password = req.body.password;
+  if (email && password) {
     const user = users.find(
-      (el) => el.email === email && el.password === password,
+      (el) => el.email == email && el.password == password,
     );
     if (user) {
       req.session.userId = user.id;
@@ -14,17 +16,18 @@ router.post('/login', (req, res) => {
     } else res.status(401).send('Wrong email or password');
   } else res.status(400).send('Login failed');
 });
-
-router.get('/logout', redirectLogin, (req, res) => {
-  // enter your code here
-});
+// redirectLogin,
+  router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.clearCookie(process.env.SESSION_NAME);
+  });
 
 router.post('/register', (req, res) => {
   // enter your code here
 });
 
 router.get('/secretdata', (req, res) => {
-  // enter your code here
+  return res.status(200).end('the prime number is 2305843009213693951');
 });
 
 module.exports = router;

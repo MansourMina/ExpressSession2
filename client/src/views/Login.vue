@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     async login() {
-      let {data}= await axios({
+      let { data } = await axios({
         url: 'http://127.0.0.1:3000/login',
         method: 'POST',
         data: {
@@ -54,7 +54,8 @@ export default {
           password: this.password,
         },
       });
-      localStorage.setItem('IdName', JSON.stringify(data))
+      localStorage.setItem('IdName', JSON.stringify(data));
+      this.$router.push('/');
     },
   },
 };

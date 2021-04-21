@@ -2,9 +2,11 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const routes = require('./routes');
-
-const ExpressSession = require('express-session');
+const cors = require('cors');
+const session = require('express-session');
 const errorHandler = require('./middleware/errorHandler');
+
+require('dotenv').config({ path: __dirname + '/.env' });
 const {
   PORT,
   NODE_ENV,
@@ -12,15 +14,19 @@ const {
   SESSION_NAME,
   SESSION_SECRET,
 } = process.env;
-require('dotenv').config({ path: __dirname + '/.env' });
-
 const app = express();
-
+app.use(cors());
 app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(express.json());
+
+// Register middleware for express sessions here
+
+app.use('/', routes);
+
+app.use(errorHandler);
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -35,18 +41,4 @@ app.use(
     },
   }),
 );
-let {
-  PORT,
-  NODE_ENV,
-  SESSION_LIFETIME,
-  SESSION_NAME,
-  SESSION_SECRET,
-} = process.env;
-
-// Register middleware for express sessions here
-
-app.use('/', routes);
-
-app.use(errorHandler);
-
 app.listen(PORT ?? 5000);
