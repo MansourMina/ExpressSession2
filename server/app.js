@@ -23,10 +23,6 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.json());
 
 // Register middleware for express sessions here
-
-app.use('/', routes);
-
-app.use(errorHandler);
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -41,4 +37,8 @@ app.use(
     },
   }),
 );
+app.use('/', routes);
+
+app.use(errorHandler);
+
 app.listen(PORT ?? 5000);

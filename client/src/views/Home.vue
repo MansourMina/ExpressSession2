@@ -37,7 +37,7 @@
       <h5 class="text-center mb-4">You are logged in!</h5>
       <div class="mx-auto">
         <router-link to="/account">Account</router-link> |
-        <router-link to="/logout">Logout</router-link>
+        <router-link to="/logout" >Logout</router-link>
       </div>
       <h5 class="text-center mt-5 text-danger">
         Your account is about to expire. Update your credit card information!
