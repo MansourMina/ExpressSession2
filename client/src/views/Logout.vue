@@ -25,7 +25,7 @@ export default {
   methods: {
     async LogOut() {
       await axios({
-      url: 'http://127.0.0.1:3000/logout',
+      url: '/logout',
       method: 'GET',
     });
     }

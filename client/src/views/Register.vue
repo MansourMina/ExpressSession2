@@ -58,7 +58,7 @@ export default {
   methods: {
     async register() {
       let { data } = await axios({
-        url: 'http://127.0.0.1:3000/register',
+        url: '/register',
         method: 'POST',
         data: {
           name: this.name,

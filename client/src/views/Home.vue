@@ -64,7 +64,9 @@ export default {
     if (user != null) {
       this.user.id = user.id;
       this.user.name = user.name;
+      console.log(this.user)
     }
+    
   },
 };
 </script>

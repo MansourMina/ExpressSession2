@@ -47,7 +47,7 @@ export default {
   methods: {
     async login() {
       let { data } = await axios({
-        url: 'http://127.0.0.1:3000/login',
+        url: '/login',
         method: 'POST',
         contentType: 'application/json',
         data: {
@@ -56,7 +56,7 @@ export default {
         },
       });
       localStorage.setItem('user', JSON.stringify(data));
-      this.$router.push({name: 'Home'});
+      this.$router.push('/');
     },
   },
 };
