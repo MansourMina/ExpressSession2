@@ -22,7 +22,7 @@
           />
         </div>
         <div class="col-2">
-          <router-link to="/"><button class="btn btn-primary" @click="login()">Login</button></router-link>
+          <button class="btn btn-primary" @click="login()">Login</button>
         </div>
       </div>
     </form>

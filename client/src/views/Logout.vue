@@ -14,21 +14,9 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
-  created () {
-    this.LogOut()
+  created() {
     localStorage.clear();
-  },
-
-
-  methods: {
-    async LogOut() {
-      await axios({
-      url: '/logout',
-      method: 'GET',
-    });
-    }
   },
 };
 </script>
